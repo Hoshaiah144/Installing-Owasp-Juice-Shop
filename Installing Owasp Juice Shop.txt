@@ -1,0 +1,13 @@
+﻿Amazon EC2 Instance
+1. In the EC2 sidenav select Instances and click Launch Instance
+2. In Step 1: Choose an Amazon Machine Image (AMI) choose an Amazon Linux AMI or Amazon Linux 2 AMI
+3. In Step 3: Configure Instance Details unfold Advanced Details and copy the script below into User Data
+4. In Step 6: Configure Security Group add a Rule that opens port 80 for HTTP
+5. Launch your instance
+6. Browse to your instance's public DNS
+#!/bin/bash
+yum update -y
+yum install -y docker
+service docker start
+docker pull bkimminich/juice-shop
+docker run -d -p 80:3000 bkimminich/juice-shop
